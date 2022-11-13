@@ -6,10 +6,14 @@ class ColorLearnView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor: ColorsItem.Norway,
       ),
       body: Container(
+        
+        
+
         color: ColorsItem.Tan,
         child: const Text('data'),
       ),
