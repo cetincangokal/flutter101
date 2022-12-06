@@ -13,8 +13,10 @@ import 'package:flutter_application_1/101/custom_widget_learn.dart';
 import 'package:flutter_application_1/101/indicator_learn.dart';
 import 'package:flutter_application_1/101/list_tile_learn.dart';
 import 'package:flutter_application_1/101/padding_learn.dart';
+import 'package:flutter_application_1/101/page_view_learn.dart';
 import 'package:flutter_application_1/101/scaffold_learn.dart';
 import 'package:flutter_application_1/101/stack_learn.dart';
+import 'package:flutter_application_1/101/stateful_learn.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
 import 'package:flutter_application_1/demos/note_demos_view.dart';
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.transparent,
           systemOverlayStyle: SystemUiOverlayStyle.light,
           elevation: 0,
         ),
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: StackDemoView(),
+      home: pageViewLearn(),
     );
   }
 }
