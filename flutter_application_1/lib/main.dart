@@ -9,11 +9,14 @@ import 'package:flutter_application_1/101/card_learn.dart';
 import 'package:flutter_application_1/101/color_learn.dart';
 import 'package:flutter_application_1/101/container_sized_box_learn.dart';
 import 'package:flutter_application_1/101/custom_widget_learn.dart';
+import 'package:flutter_application_1/101/indicator_learn.dart';
+import 'package:flutter_application_1/101/list_tile_learn.dart';
 import 'package:flutter_application_1/101/padding_learn.dart';
 import 'package:flutter_application_1/101/scaffold_learn.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
 import 'package:flutter_application_1/demos/note_demos_view.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -40,8 +43,10 @@ class MyApp extends StatelessWidget {
         cardTheme: CardTheme(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
+        progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
+        listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: customWidget(),
+      home: listTileLearn(),
     );
   }
 }
