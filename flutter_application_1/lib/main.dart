@@ -8,6 +8,7 @@ import 'package:flutter_application_1/101/button_learn.dart';
 import 'package:flutter_application_1/101/card_learn.dart';
 import 'package:flutter_application_1/101/color_learn.dart';
 import 'package:flutter_application_1/101/container_sized_box_learn.dart';
+import 'package:flutter_application_1/101/custom_widget_learn.dart';
 import 'package:flutter_application_1/101/padding_learn.dart';
 import 'package:flutter_application_1/101/scaffold_learn.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
       ),
-      home: NoteDemos(),
+      home: customWidget(),
     );
   }
 }
