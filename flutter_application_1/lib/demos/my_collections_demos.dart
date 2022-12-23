@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyCollectionsDemos extends StatefulWidget {
-  const MyCollectionsDemos({super.key});
+  const MyCollectionsDemos({Key? key}) : super(key: key);
 
   @override
   State<MyCollectionsDemos> createState() => _MyCollectionsDemosState();
@@ -11,60 +11,51 @@ class _MyCollectionsDemosState extends State<MyCollectionsDemos> {
   late final List<CollectionModel> _items;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _items = [
-      CollectionModel(
-          imagePath: 'assets/png/image_collection.png',
-          title: 'Abstarct Art',
-          price: 3.4),
-      CollectionModel(
-          imagePath: 'assets/png/image_collection.png',
-          title: 'Abstarct Art',
-          price: 3.4),
-      CollectionModel(
-          imagePath: 'assets/png/image_collection.png',
-          title: 'Abstarct Art',
-          price: 3.4),
-      CollectionModel(
-          imagePath: 'assets/png/image_collection.png',
-          title: 'Abstarct Art',
-          price: 3.4),
-    ];
+    _items = CollectionItems().items;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: ListView.builder(
         itemCount: _items.length,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: PaddindUtility().paddingHorizontal,
         itemBuilder: (context, index) {
-          return Card(
-            margin: EdgeInsets.only(bottom: 20),
-            child: SizedBox(
-              height: 300,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Expanded(child: Image.asset(_items[index].imagePath, fit: BoxFit.cover,)),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        Text(_items[index].title),
-                        Text('${_items[index].price} eth'),
-                      ],),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
+          return _CategoryCard(model: _items[index]);
         },
+      ),
+    );
+  }
+}
+
+class _CategoryCard extends StatelessWidget {
+  const _CategoryCard({
+    Key? key,
+    required CollectionModel model,
+  })  : _model = model,
+        super(key: key);
+
+  final CollectionModel _model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: PaddindUtility().paddinBottom,
+      child: Padding(
+        padding: PaddindUtility().paddingGeneral,
+        child: Column(
+          children: [
+            Image.asset(_model.imagePath, fit: BoxFit.fill),
+            Padding(
+              padding: PaddindUtility().paddingTop,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text(_model.title), Text('${_model.price} eth')],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -75,6 +66,29 @@ class CollectionModel {
   final String title;
   final double price;
 
-  CollectionModel(
-      {required this.imagePath, required this.title, required this.price});
+  CollectionModel({required this.imagePath, required this.title, required this.price});
+}
+
+class CollectionItems {
+  late final List<CollectionModel> items;
+
+  CollectionItems() {
+    items = [
+      CollectionModel(imagePath: ProjectImages.imageCollection, title: 'Abstract Art', price: 3.4),
+      CollectionModel(imagePath: ProjectImages.imageCollection, title: 'Abstract Art2', price: 3.4),
+      CollectionModel(imagePath: ProjectImages.imageCollection, title: 'Abstract Art3', price: 3.4),
+      CollectionModel(imagePath: ProjectImages.imageCollection, title: 'Abstract Art4', price: 3.4),
+    ];
+  }
+}
+
+class PaddindUtility {
+  final paddingTop = const EdgeInsets.only(top: 10);
+  final paddinBottom = const EdgeInsets.only(bottom: 20);
+  final paddingGeneral = const EdgeInsets.all(20);
+  final paddingHorizontal = const EdgeInsets.symmetric(horizontal: 20);
+}
+
+class ProjectImages {
+  static const imageCollection = 'assets/png/image_collection2.png';
 }
