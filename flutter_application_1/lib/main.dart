@@ -23,6 +23,7 @@ import 'package:flutter_application_1/101/statefull_life_cycle.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
 import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
+import 'package:flutter_application_1/202/tab_learn.dart';
 import 'package:flutter_application_1/demos/color_demos_view.dart';
 import 'package:flutter_application_1/demos/color_lifeCycle_view.dart';
 import 'package:flutter_application_1/demos/my_collections_demos.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: myLoginPage(),
+      home: tabLearn(),
     );
   }
 }
