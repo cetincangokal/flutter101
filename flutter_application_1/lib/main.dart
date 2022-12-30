@@ -23,6 +23,8 @@ import 'package:flutter_application_1/101/statefull_life_cycle.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
 import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
+import 'package:flutter_application_1/202/model_learn.dart';
+import 'package:flutter_application_1/202/model_learn_view.dart';
 import 'package:flutter_application_1/202/tab_learn.dart';
 import 'package:flutter_application_1/demos/color_demos_view.dart';
 import 'package:flutter_application_1/demos/color_lifeCycle_view.dart';
@@ -48,6 +50,12 @@ class MyApp extends StatelessWidget {
           color: Colors.blueGrey,
           size: 50,
         ),
+        tabBarTheme: TabBarTheme(
+          ///indicator:
+          ///labelColor:
+          ///cart curt
+          ///buraya yazmak daha temiz 
+        ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
           backgroundColor: Colors.transparent,
@@ -61,7 +69,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: tabLearn(),
+      home: ModelLearnView(),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/101/%C4%B1con_learn.dart';
+import 'package:flutter_application_1/101/%C4%B1mage_learn.dart';
 
 class tabLearn extends StatefulWidget {
   const tabLearn({super.key});
@@ -7,53 +9,75 @@ class tabLearn extends StatefulWidget {
   State<tabLearn> createState() => _tabLearnState();
 }
 
-class _tabLearnState extends State<tabLearn> with TickerProviderStateMixin{
+class _tabLearnState extends State<tabLearn> with TickerProviderStateMixin {
   late final TabController _tabController;
+  final double _notchedValue = 10;
+  int value = 0;
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController =
+        TabController(length: _MyTabViews.values.length, vsync: this);
   }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: _MyTabViews.values.length,
       child: Scaffold(
         extendBody: true,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton( 
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
-            _tabController.animateTo(0);
+            _tabController.animateTo(_MyTabViews.home.index);
           },
         ),
         bottomNavigationBar: BottomAppBar(
-          notchMargin: 10,
+          notchMargin: _notchedValue,
           shape: CircularNotchedRectangle(),
-          child: TabBar(
-            controller: _tabController,
-            tabs: [
-            Tab(
-              text: 'Page 1',
-            ),
-            Tab(
-              text: 'Page2',
-            ),
-          ]),
+          child: _tabBAr(),
         ),
-        appBar: AppBar(
-          
-        ),
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-          Container(
-            color: Colors.red,
-          ),
-          Container(
-            color: Colors.green,
-          ),
-        ]),
+        appBar: AppBar(),
+        body: _tabBarView(),
       ),
     );
   }
+
+  TabBar _tabBAr() {
+    return TabBar(
+            indicatorColor: Colors.white,
+            labelColor: Colors.purple,
+            unselectedLabelColor: Colors.white,
+            onTap: (int value) {},
+            controller: _tabController,
+            tabs: 
+              _MyTabViews.values
+                  .map((e) => Tab(
+                        text: '${e.name}',
+                      ))
+                  .toList(),
+            );
+  }
+
+  TabBarView _tabBarView() {
+    return TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: _tabController,
+          children: [
+            ImageLearn(),
+            IconLearnView(),
+            IconLearnView(),
+            IconLearnView(),
+          ]);
+  }
+}
+
+enum _MyTabViews {
+  home,
+  settings,
+  favourite,
+  profile,
+}
+
+extension _MyTabViewExtension on _MyTabViews {
 }
