@@ -25,17 +25,20 @@ import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
 import 'package:flutter_application_1/202/model_learn.dart';
 import 'package:flutter_application_1/202/model_learn_view.dart';
+import 'package:flutter_application_1/202/package/package_learn_view.dart';
 import 'package:flutter_application_1/202/service/comment_learn_view.dart';
 import 'package:flutter_application_1/202/service/service_learn_get_view.dart';
 import 'package:flutter_application_1/202/service/service_post_learn_view.dart';
 import 'package:flutter_application_1/202/tab_learn.dart';
+import 'package:flutter_application_1/202/theme/light_theme.dart';
+import 'package:flutter_application_1/202/theme/theme_learn_view.dart';
+import 'package:flutter_application_1/202/widget_size_learn_view.dart';
 import 'package:flutter_application_1/demos/color_demos_view.dart';
 import 'package:flutter_application_1/demos/color_lifeCycle_view.dart';
 import 'package:flutter_application_1/demos/my_collections_demos.dart';
 import 'package:flutter_application_1/demos/my_demo_loginPage.dart';
 import 'package:flutter_application_1/demos/note_demos_view.dart';
 import 'package:flutter_application_1/demos/stack_demo_view.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -48,31 +51,34 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.dark().copyWith(
-        iconTheme: IconThemeData(
-          color: Colors.blueGrey,
-          size: 50,
-        ),
-        tabBarTheme: TabBarTheme(
-          ///indicator:
-          ///labelColor:
-          ///cart curt
-          ///buraya yazmak daha temiz 
-        ),
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          elevation: 0,
-        ),
-      
-        cardTheme: CardTheme(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        ),
-        progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
-        listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
-      ),
-      home: CommentLearnView(),
+      debugShowCheckedModeBanner: false,
+      theme: LigthTheme().theme,
+
+      // theme: ThemeData.dark().copyWith(
+      //   iconTheme: IconThemeData(
+      //     color: Colors.blueGrey,
+      //     size: 50,
+      //   ),
+      //   tabBarTheme: TabBarTheme(
+      //     ///indicator:
+      //     ///labelColor:
+      //     ///cart curt
+      //     ///buraya yazmak daha temiz
+      //   ),
+      //   appBarTheme: AppBarTheme(
+      //     centerTitle: true,
+      //     backgroundColor: Colors.transparent,
+      //     systemOverlayStyle: SystemUiOverlayStyle.light,
+      //     elevation: 0,
+      //   ),
+
+      //   cardTheme: CardTheme(
+      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      //   ),
+      //   progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
+      //   listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
+      // ),
+      home: ThemeLearnView(),
     );
   }
 }
