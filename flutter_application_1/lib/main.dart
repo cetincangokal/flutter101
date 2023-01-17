@@ -23,6 +23,8 @@ import 'package:flutter_application_1/101/statefull_life_cycle.dart';
 import 'package:flutter_application_1/101/stateless_learn.dart';
 import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
+import 'package:flutter_application_1/202/%C4%B1mage_learn_202.dart';
+import 'package:flutter_application_1/202/animated_learn.dart';
 import 'package:flutter_application_1/202/model_learn.dart';
 import 'package:flutter_application_1/202/model_learn_view.dart';
 import 'package:flutter_application_1/202/package/package_learn_view.dart';
@@ -52,33 +54,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: LigthTheme().theme,
 
-      // theme: ThemeData.dark().copyWith(
-      //   iconTheme: IconThemeData(
-      //     color: Colors.blueGrey,
-      //     size: 50,
-      //   ),
-      //   tabBarTheme: TabBarTheme(
-      //     ///indicator:
-      //     ///labelColor:
-      //     ///cart curt
-      //     ///buraya yazmak daha temiz
-      //   ),
-      //   appBarTheme: AppBarTheme(
-      //     centerTitle: true,
-      //     backgroundColor: Colors.transparent,
-      //     systemOverlayStyle: SystemUiOverlayStyle.light,
-      //     elevation: 0,
-      //   ),
+      theme: ThemeData.dark().copyWith(
+        iconTheme: IconThemeData(
+          color: Colors.blueGrey,
+          size: 50,
+        ),
+        tabBarTheme: TabBarTheme(
+          ///indicator:
+          ///labelColor:
+          ///cart curt
+          ///buraya yazmak daha temiz
+        ),
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          elevation: 0,
+        ),
 
-      //   cardTheme: CardTheme(
-      //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      //   ),
-      //   progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
-      //   listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
-      // ),
-      home: ThemeLearnView(),
+        cardTheme: CardTheme(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+        progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
+        listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
+      ),
+      home: animatedLearn(),
     );
   }
 }
