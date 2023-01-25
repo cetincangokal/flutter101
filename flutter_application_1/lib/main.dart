@@ -25,8 +25,10 @@ import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
 import 'package:flutter_application_1/202/%C4%B1mage_learn_202.dart';
 import 'package:flutter_application_1/202/animated_learn.dart';
+import 'package:flutter_application_1/202/form_learn_view.dart';
 import 'package:flutter_application_1/202/model_learn.dart';
 import 'package:flutter_application_1/202/model_learn_view.dart';
+import 'package:flutter_application_1/202/oop_learn_view.dart';
 import 'package:flutter_application_1/202/package/package_learn_view.dart';
 import 'package:flutter_application_1/202/service/comment_learn_view.dart';
 import 'package:flutter_application_1/202/service/service_learn_get_view.dart';
@@ -79,7 +81,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: animatedLearn(),
+      home: formLearnView(),
     );
   }
 }
