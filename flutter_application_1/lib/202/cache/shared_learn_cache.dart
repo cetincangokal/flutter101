@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/202/cache/shared_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'shared_manager.dart';
+import 'user_model.dart';
 
 class SharedLearn extends StatefulWidget {
-  const SharedLearn({super.key});
+  const SharedLearn({Key? key}) : super(key: key);
 
   @override
   State<SharedLearn> createState() => _SharedLearnState();
@@ -12,22 +12,21 @@ class SharedLearn extends StatefulWidget {
 class _SharedLearnState extends LoadingStatefull<SharedLearn> {
   int _currentValue = 0;
   late final SharedManager _manager;
+
   late final List<User> userItems;
-
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _manager = SharedManager();
     userItems = UserItems().users;
-    _initialize();
+    _initialze();
   }
 
-  Future<void> _initialize() async {
+  Future<void> _initialze() async {
     changeLoading();
     await _manager.init();
     changeLoading();
+
     getDefaultValues();
   }
 
@@ -49,21 +48,11 @@ class _SharedLearnState extends LoadingStatefull<SharedLearn> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_currentValue.toString()),
-        actions: [
-          isLoading
-              ? Center(
-                  child: CircularProgressIndicator(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                ))
-              : SizedBox.shrink()
-        ],
+        actions: [_loading(context)],
       ),
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          _saveValueButton(),
-          _removeValueButton(),
-        ],
+        children: [_saveValueButton(), _removeValueButton()],
       ),
       body: Column(
         children: [
@@ -72,26 +61,34 @@ class _SharedLearnState extends LoadingStatefull<SharedLearn> {
               _onChangeValue(value);
             },
           ),
-          Expanded(child: _userListView())
         ],
       ),
     );
   }
 
+  SingleChildRenderObjectWidget _loading(BuildContext context) {
+    return isLoading
+        ? Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+          )
+        : const SizedBox.shrink();
+  }
+
   FloatingActionButton _saveValueButton() {
     return FloatingActionButton(
-      child: Icon(Icons.save),
-      onPressed: (() async {
-        changeLoading();
-        await _manager.saveString(SharedKeys.counter, _currentValue.toString());
-        changeLoading();
-      }),
-    );
+        child: const Icon(Icons.save),
+        onPressed: (() async {
+          changeLoading();
+          await _manager.saveString(SharedKeys.counter, _currentValue.toString());
+          changeLoading();
+        }));
   }
 
   FloatingActionButton _removeValueButton() {
     return FloatingActionButton(
-        child: Icon(Icons.remove),
+        child: const Icon(Icons.remove),
         onPressed: (() async {
           changeLoading();
           await _manager.removeItem(SharedKeys.counter);
@@ -100,29 +97,18 @@ class _SharedLearnState extends LoadingStatefull<SharedLearn> {
   }
 }
 
-class _userListView extends StatelessWidget {
-  _userListView({
-    Key? key,
-  }) : super(key: key);
-  final List<User> users = UserItems().users;
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: users.length,
-        itemBuilder: ((BuildContext context, int index) {
-          return Card(
-            child: ListTile(
-              title: Text(users[index].name),
-              subtitle: Text(
-                users[index].description,
-              ),
-              trailing: Text(users[index].url, style: Theme.of(context).textTheme.subtitle1?.copyWith(decoration: TextDecoration.underline)),
-            ),
-          );
-        }));
+class UserItems {
+  late final List<User> users;
+  UserItems() {
+    users = [
+      User('vb', '10', 'vb10.dev'),
+      User('vb2', '102', 'vb10.dev'),
+      User('vb3', '103', 'vb10.dev'),
+    ];
   }
 }
 
+//Generic
 abstract class LoadingStatefull<T extends StatefulWidget> extends State<T> {
   bool isLoading = false;
 
@@ -130,24 +116,5 @@ abstract class LoadingStatefull<T extends StatefulWidget> extends State<T> {
     setState(() {
       isLoading = !isLoading;
     });
-  }
-}
-
-class User {
-  final String name;
-  final String description;
-  final String url;
-
-  User(this.name, this.description, this.url);
-}
-
-class UserItems {
-  late final List<User> users;
-  UserItems() {
-    users = [
-      User('Çetin', '14', 'cetin/14'),
-      User('Merve', '25', 'merve/25'),
-      User('Selin', '07', 'selin/07'),
-    ];
   }
 }
