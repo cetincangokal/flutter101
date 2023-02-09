@@ -18,7 +18,7 @@ class UserCacheManager {
   List<User>? getItems() {
     // Compute
     final itemsString = sharedManager.getStrings(SharedKeys.users);
-    if (itemsString?.isNotEmpty ?? true) {
+    if (itemsString?.isNotEmpty ?? false) {
       return itemsString!.map((element) {
         final json = jsonDecode(element);
         if (json is Map<String, dynamic>) {

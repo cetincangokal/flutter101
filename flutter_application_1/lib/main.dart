@@ -25,6 +25,7 @@ import 'package:flutter_application_1/101/text_field_learn.dart';
 import 'package:flutter_application_1/101/text_widget_learn.dart';
 import 'package:flutter_application_1/202/%C4%B1mage_learn_202.dart';
 import 'package:flutter_application_1/202/animated_learn.dart';
+import 'package:flutter_application_1/202/cache/secure/secure_context_learn.dart';
 import 'package:flutter_application_1/202/cache/shared_learn_cache.dart';
 import 'package:flutter_application_1/202/cache/shared_list_cache.dart';
 import 'package:flutter_application_1/202/form_learn_view.dart';
@@ -83,7 +84,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: SharedListCache(),
+      home: secureContextLearn(),
     );
   }
 }
