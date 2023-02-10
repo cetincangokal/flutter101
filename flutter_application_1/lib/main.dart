@@ -36,6 +36,7 @@ import 'package:flutter_application_1/202/package/package_learn_view.dart';
 import 'package:flutter_application_1/202/service/comment_learn_view.dart';
 import 'package:flutter_application_1/202/service/service_learn_get_view.dart';
 import 'package:flutter_application_1/202/service/service_post_learn_view.dart';
+import 'package:flutter_application_1/202/sheet_learn.dart';
 import 'package:flutter_application_1/202/tab_learn.dart';
 import 'package:flutter_application_1/202/theme/light_theme.dart';
 import 'package:flutter_application_1/202/theme/theme_learn_view.dart';
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: secureContextLearn(),
+      home: sheetLearn(),
     );
   }
 }
