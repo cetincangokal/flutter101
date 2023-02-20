@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,6 +47,7 @@ import 'package:flutter_application_1/202/widget_size_learn_view.dart';
 import 'package:flutter_application_1/303/call_back_learn.dart';
 import 'package:flutter_application_1/303/generic_learn.dart';
 import 'package:flutter_application_1/303/part/part_of_learn.dart';
+import 'package:flutter_application_1/303/reqrest_resources/view/reqres_view.dart';
 import 'package:flutter_application_1/303/tabbar_advance.dart';
 import 'package:flutter_application_1/demos/color_demos_view.dart';
 import 'package:flutter_application_1/demos/color_lifeCycle_view.dart';
@@ -52,9 +55,14 @@ import 'package:flutter_application_1/demos/my_collections_demos.dart';
 import 'package:flutter_application_1/demos/my_demo_loginPage.dart';
 import 'package:flutter_application_1/demos/note_demos_view.dart';
 import 'package:flutter_application_1/demos/stack_demo_view.dart';
+import 'package:flutter_application_1/product/global/resource_context.dart';
+import 'package:flutter_application_1/product/global/theme_notifier.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [Provider(create: ((_) => ResourceContext())),
+  ChangeNotifierProvider<ThemeNotifier>(create: ((context) => ThemeNotifier()))],
+  builder: (context, child) => MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -65,7 +73,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      theme: context.watch<ThemeNotifier>().currentTheme
+      .copyWith(
         iconTheme: IconThemeData(
           color: Colors.blueGrey,
           size: 50,
@@ -90,7 +99,10 @@ class MyApp extends StatelessWidget {
         progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
         listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
       ),
-      home: tabbarAdvanceLearn(),
+      home: reqresView(),
     );
   }
 }
+
+
+

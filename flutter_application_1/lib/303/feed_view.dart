@@ -31,41 +31,55 @@ class _feedViewState extends State<feedView>
         });
       }),
       appBar: AppBar(),
-      body: FutureBuilder<List<Postmodel>?>(
-        future: _itemsFuture,
-        builder:
-            (BuildContext context, AsyncSnapshot<List<Postmodel>?> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return Placeholder();
-            case ConnectionState.waiting:
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            case ConnectionState.active:
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            case ConnectionState.done:
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data?.length ?? 0,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                          child: ListTile(
-                        title: Text(snapshot.data?[index].body ?? ''),
-                      ));
-                    });
-              } else {
-                return Placeholder();
-              }
-          }
-        },
-      ),
+      body: _FeedFutureBuilder(itemsFuture: _itemsFuture),
     );
   }
 
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
+}
+
+class _FeedFutureBuilder extends StatelessWidget {
+  const _FeedFutureBuilder({
+    super.key,
+    required Future<List<Postmodel>?> itemsFuture,
+  }) : _itemsFuture = itemsFuture;
+
+  final Future<List<Postmodel>?> _itemsFuture;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Postmodel>?>(
+      future: _itemsFuture,
+      builder:
+          (BuildContext context, AsyncSnapshot<List<Postmodel>?> snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+            return Placeholder();
+          case ConnectionState.waiting:
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          case ConnectionState.active:
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          case ConnectionState.done:
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data?.length ?? 0,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Card(
+                        child: ListTile(
+                      title: Text(snapshot.data?[index].body ?? ''),
+                    ));
+                  });
+            } else {
+              return Placeholder();
+            }
+        }
+      },
+    );
+  }
 }
